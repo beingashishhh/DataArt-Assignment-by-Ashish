@@ -29,6 +29,7 @@ It represents my learning journey, where I practice building projects, improving
    ```bash
    git clone https://github.com/beingashishhh/DataArt-Assignment-by-Ashish.git
 
+---
 
 ## 📌 Homework 2: API Style, Contracts & Controllers
 
@@ -47,13 +48,14 @@ We evaluated **gRPC, GraphQL, and REST** for the AICalendar system.
 
 **Decision →** We chose **REST API** because it’s simple, widely supported, and fits CRUD operations for calendars/events.
 
+
 ## Homework 2 (Progress)
 
-### ✅ Chosen API Style
+###  Chosen API Style
 - We are using **REST API** with controllers (`EventsController`, `CalendarsController`, `AttendeesController`).
 - REST was chosen because it’s simple, widely supported, and fits CRUD operations for calendars/events.
 
-### ✅ API Contract Overview
+###  API Contract Overview
 - Endpoints:
   - `GET /api/Events` → List all events
   - `GET /api/Events/{id}` → Get event by ID
@@ -62,7 +64,7 @@ We evaluated **gRPC, GraphQL, and REST** for the AICalendar system.
   - `DELETE /api/Events/{id}` → Delete an event
   - (similar endpoints exist for `/api/Calendars` and `/api/Attendees`)
 
-### ✅ Example API Calls
+###  Example API Calls
 ```bash
 # Get all events
 curl -X GET http://localhost:5000/api/Events
