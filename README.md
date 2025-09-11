@@ -74,3 +74,6 @@ curl -X GET http://localhost:5000/api/Events
 curl -X POST http://localhost:5000/api/Events \
    -H "Content-Type: application/json" \
    -d '{"title":"Team Meeting","description":"Discuss project","start":"2025-09-12T10:00:00Z","end":"2025-09-12T11:00:00Z","timezone":"UTC","calendarId":1}'
+
+
+homework 3 partially done
