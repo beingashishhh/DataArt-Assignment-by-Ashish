@@ -48,6 +48,7 @@ We evaluated **gRPC, GraphQL, and REST** for the AICalendar system.
 
 **Decision →** We chose **REST API** because it’s simple, widely supported, and fits CRUD operations for calendars/events.
 
+---
 
 ## Homework 2 (Progress)
 
