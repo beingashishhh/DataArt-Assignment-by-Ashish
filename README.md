@@ -76,4 +76,35 @@ curl -X POST http://localhost:5000/api/Events \
    -d '{"title":"Team Meeting","description":"Discuss project","start":"2025-09-12T10:00:00Z","end":"2025-09-12T11:00:00Z","timezone":"UTC","calendarId":1}'
 
 
-homework 3 partially done
+
+## 📌 Homework 3 – Completion Summary
+
+## Coding Tasks Completed
+- **Upgrade to .NET 9**
+  - Project updated to target **net9.0**
+  - All projects build and run successfully
+
+- **Refactor with C# 13 Feature**
+  - Applied **Params collections** for handling meeting attendees
+  - EF Core mapping configured using a many-to-many relationship (`MeetingAttendees` join table)
+
+- **Entities & Relationships**
+  - **Calendars** → can hold multiple events
+  - **Events** → linked to a calendar, can have attendees
+  - **Attendees** → tied to events, can join multiple meetings
+  - **Meetings** → scheduled with one or many attendees
+
+- **Repositories & Controllers**
+  - Added repositories for `Calendars`, `Events`, `Attendees`, and `Meetings`
+  - Controllers expose full CRUD endpoints
+  - JWT Authentication enforced with `[Authorize]`
+
+---
+
+## Testing Flow (Swagger / Postman)
+
+1. **Create Calendar**  
+   `POST /api/Calendars`
+   ```json
+   { "id": 0, "name": "Work Calendar", "description": "Project tasks" }
+
