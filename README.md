@@ -33,7 +33,7 @@ It represents my learning journey, where I practice building projects, improving
 
 ## 📌 Homework 2: API Style, Contracts & Controllers
 
-### ✅ Step 1: Compare API Styles
+###  Step 1: Compare API Styles
 We evaluated **gRPC, GraphQL, and REST** for the AICalendar system.  
 
 | Criteria               | REST                          | GraphQL                           | gRPC                            |
@@ -80,13 +80,11 @@ curl -X POST http://localhost:5000/api/Events \
 - Breaking changes will be released as `/api/v2/`
 - Deprecated endpoints will remain active for one release cycle with warnings
 
----
 
 ###  Migration Notes for Clients
 - Clients using Homework 1 endpoints should migrate to REST controllers
 - All requests must now include a valid **JWT token** in the `Authorization: Bearer <token>` header
 
----
 
 ###  Local Development Setup
 1. Clone this repository  
@@ -97,14 +95,12 @@ curl -X POST http://localhost:5000/api/Events \
    dotnet run --project MyProject.API
 5. Open Swagger UI at → [https://localhost:7127/swagger](https://localhost:7127/swagger)
 
----
 
 ###  Security,  Performance &  Observability
 - **Security**: JWT authentication enforced for all protected endpoints  
 - **Performance**: REST endpoints optimized for CRUD, lightweight payloads  
 - **Observability**: Structured logging enabled with ASP.NET Core logging  
 
----
 
 ###  Known Limitations
 - No rate limiting yet (clients can send unlimited requests)  
@@ -112,5 +108,37 @@ curl -X POST http://localhost:5000/api/Events \
 - Error handling is basic (we only return simple error codes for now)  
 - Contract file (`openapi.yaml`) not yet finalized — endpoints are documented here in README  
 
+---
+
+## 📌 Homework 3 – Completion Summary
+
+###  Coding Tasks Completed
+- **Upgrade to .NET 9**
+  - Project updated to target **net9.0**
+  - All projects build and run successfully
+
+- **Refactor with C# 13 Feature**
+  - Applied **Params collections** for handling meeting attendees
+  - EF Core mapping configured using a many-to-many relationship (`MeetingAttendees` join table)
+
+- **Entities & Relationships**
+  - **Calendars** → can hold multiple events
+  - **Events** → linked to a calendar, can have attendees
+  - **Attendees** → tied to events, can join multiple meetings
+  - **Meetings** → scheduled with one or many attendees
+
+- **Repositories & Controllers**
+  - Added repositories for `Calendars`, `Events`, `Attendees`, and `Meetings`
+  - Controllers expose full CRUD endpoints
+  - JWT Authentication enforced with `[Authorize]`
+
+---
+
+##  Testing Flow (Swagger / Postman)
+
+1. **Create Calendar**  
+   `POST /api/Calendars`
+   ```json
+   { "id": 0, "name": "Work Calendar", "description": "Project tasks" }
 
 
