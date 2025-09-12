@@ -72,39 +72,45 @@ curl -X GET http://localhost:5000/api/Events
 
 # Create an event
 curl -X POST http://localhost:5000/api/Events \
-   -H "Content-Type: application/json" \
-   -d '{"title":"Team Meeting","description":"Discuss project","start":"2025-09-12T10:00:00Z","end":"2025-09-12T11:00:00Z","timezone":"UTC","calendarId":1}'
-
-
-
-## 📌 Homework 3 – Completion Summary
-
-## Coding Tasks Completed
-- **Upgrade to .NET 9**
-  - Project updated to target **net9.0**
-  - All projects build and run successfully
-
-- **Refactor with C# 13 Feature**
-  - Applied **Params collections** for handling meeting attendees
-  - EF Core mapping configured using a many-to-many relationship (`MeetingAttendees` join table)
-
-- **Entities & Relationships**
-  - **Calendars** → can hold multiple events
-  - **Events** → linked to a calendar, can have attendees
-  - **Attendees** → tied to events, can join multiple meetings
-  - **Meetings** → scheduled with one or many attendees
-
-- **Repositories & Controllers**
-  - Added repositories for `Calendars`, `Events`, `Attendees`, and `Meetings`
-  - Controllers expose full CRUD endpoints
-  - JWT Authentication enforced with `[Authorize]`
+    -H "Content-Type: application/json" \
+    -d '{"title":"Team Meeting","description":"Discuss project","start":"2025-09-12T10:00:00Z","end":"2025-09-12T11:00:00Z","timezone":"UTC","calendarId":1}'
+```
+###  Versioning & Deprecation
+- Current version: **v1** (all endpoints under `/api/`)
+- Breaking changes will be released as `/api/v2/`
+- Deprecated endpoints will remain active for one release cycle with warnings
 
 ---
 
-## Testing Flow (Swagger / Postman)
+###  Migration Notes for Clients
+- Clients using Homework 1 endpoints should migrate to REST controllers
+- All requests must now include a valid **JWT token** in the `Authorization: Bearer <token>` header
 
-1. **Create Calendar**  
-   `POST /api/Calendars`
-   ```json
-   { "id": 0, "name": "Work Calendar", "description": "Project tasks" }
+---
+
+###  Local Development Setup
+1. Clone this repository  
+2. Run `dotnet restore`  
+3. Run `dotnet build`  
+4. Start the API with:  
+   ```bash
+   dotnet run --project MyProject.API
+5. Open Swagger UI at → [https://localhost:7127/swagger](https://localhost:7127/swagger)
+
+---
+
+###  Security,  Performance &  Observability
+- **Security**: JWT authentication enforced for all protected endpoints  
+- **Performance**: REST endpoints optimized for CRUD, lightweight payloads  
+- **Observability**: Structured logging enabled with ASP.NET Core logging  
+
+---
+
+###  Known Limitations
+- No rate limiting yet (clients can send unlimited requests)  
+- Pagination missing for list endpoints (large datasets may be slow to load)  
+- Error handling is basic (we only return simple error codes for now)  
+- Contract file (`openapi.yaml`) not yet finalized — endpoints are documented here in README  
+
+
 
