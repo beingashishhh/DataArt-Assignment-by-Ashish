@@ -139,48 +139,100 @@ curl -X POST http://localhost:5000/api/Events \
    `POST /api/Calendars`
    ```json
    { "id": 0, "name": "Work Calendar", "description": "Project tasks" }
-Create Attendees
+   
 
-POST /api/Attendees
+2. **Create Event**  
+   `POST /api/Events`  
+   ```json
+   { 
+     "id": 0, 
+     "name": "Tech Conference", 
+     "description": "Main event for tech talks" 
+   }
+   ```
+   
+3. **Create Attendee**  
+   `POST /api/Attendees`  
+   ```json
+   { 
+     "id": 0, 
+     "name": "Ashish", 
+     "email": "ashish@example.com", 
+     "eventId": 8 
+   }
+   ```
+   **Create Attendee**  
+   `POST /api/Attendees`  
+   ```json
+   { 
+     "id": 0, 
+     "name": "John", 
+     "email": "john@example.com", 
+     "eventId": 8 
+   }
+   ```
+   
+4. **Create Meeting**  
+   `POST /api/Meetings`  
+   ```json
+   { 
+     "id": 0, 
+     "title": "Project Sync", 
+     "startUtc": "2025-09-20T10:00:00", 
+     "endUtc": "2025-09-20T11:00:00", 
+     "attendeeIds": [8, 9] 
+   }
+   ```
 
-{ "id": 0, "name": "Ashish", "email": "ashish@example.com", "eventId": 8 }
+5. **Get Meetings**  
+   `GET /api/Meetings`  
+   → returns scheduled meetings
+   
+6. **Reschedule Meeting**  
+   `PUT /api/Meetings/5`  
+   ```json
+   { 
+     "id": 5, 
+     "title": "Project Sync (Rescheduled)", 
+     "startUtc": "2025-09-20T14:00:00", 
+     "endUtc": "2025-09-20T15:00:00", 
+     "attendeeIds": [8, 9] 
+   }
+   ```
+
+7. **Cancel Meeting**  
+   `DELETE /api/Meetings/5`  
+   → returns `204 No Content`  
+
+   `GET /api/Meetings/5`  
+   → returns `404 Not Found`
+
+**Research on Open-Source LLaMA AI Model**  
+
+     **How to Run LLaMA Locally**  
+   - Use **Ollama** or **llama.cpp** to run Meta’s LLaMA model on your local machine.  
+   - Example with Ollama:  
+     ```bash
+     ollama run llama2
+     ```  
+   - Requires **GPU (recommended)** or **CPU with sufficient RAM**.  
+
+     **Integration with Backend API**  
+   - ASP.NET Core API can call the local LLaMA server via HTTP.  
+   - **Workflow:**  
+     1. User sends a natural language query (e.g., “schedule a meeting with Ashish tomorrow at 10am”).  
+     2. API forwards it to local LLaMA.  
+     3. LLaMA classifies intent (create, reschedule, cancel, list).  
+     4. LLaMA extracts entities (title, date, attendees).  
+     5. API maps this into structured JSON and calls MCP server tools (Homework 4).  
+
+     **Benefits for the AI Calendar Project**  
+   - **Privacy** → Data stays local, not sent to cloud APIs.  
+   - **Cost-efficient** → No API usage fees.  
+   - **Customizable** → Can fine-tune prompts or model for calendar use-cases.  
 
 
-POST /api/Attendees
 
-{ "id": 0, "name": "John", "email": "john@example.com", "eventId": 8 }
 
-Create Meeting
 
-POST /api/Meetings
-
-{
-  "id": 0,
-  "title": "Project Sync",
-  "startUtc": "2025-09-20T10:00:00",
-  "endUtc": "2025-09-20T11:00:00",
-  "attendeeIds": [8, 9]
-}
-
-Get Meetings
-
-GET /api/Meetings
-→ Returns scheduled meetings
-
-Reschedule Meeting
-
-PUT /api/Meetings/5
-
-{
-  "id": 5,
-  "title": "Project Sync (Rescheduled)",
-  "startUtc": "2025-09-20T14:00:00",
-  "endUtc": "2025-09-20T15:00:00",
-  "attendeeIds": [8, 9]
-}
-
-Cancel Meeting
-
-DELETE /api/Meetings/5 → returns 204 No Content
-GET /api/Meetings/5 → returns 404 Not Found
 
