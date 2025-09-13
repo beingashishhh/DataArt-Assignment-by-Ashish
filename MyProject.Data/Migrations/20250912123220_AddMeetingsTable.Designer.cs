@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyProject.Data.Context;
 
@@ -11,9 +12,11 @@ using MyProject.Data.Context;
 namespace MyProject.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250912123220_AddMeetingsTable")]
+    partial class AddMeetingsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace MyProject.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AttendeeMeeting", b =>
-                {
-                    b.Property<int>("AttendeesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MeetingsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AttendeesId", "MeetingsId");
-
-                    b.HasIndex("MeetingsId");
-
-                    b.ToTable("MeetingAttendees", (string)null);
-                });
 
             modelBuilder.Entity("MyProject.Domain.Entities.Attendee", b =>
                 {
@@ -71,6 +59,7 @@ namespace MyProject.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -94,6 +83,7 @@ namespace MyProject.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -115,6 +105,10 @@ namespace MyProject.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AttendeeIdsCsv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("EndUtc")
                         .HasColumnType("datetime2");
 
@@ -128,21 +122,6 @@ namespace MyProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Meetings");
-                });
-
-            modelBuilder.Entity("AttendeeMeeting", b =>
-                {
-                    b.HasOne("MyProject.Domain.Entities.Attendee", null)
-                        .WithMany()
-                        .HasForeignKey("AttendeesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyProject.Domain.Entities.Meeting", null)
-                        .WithMany()
-                        .HasForeignKey("MeetingsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyProject.Domain.Entities.Attendee", b =>

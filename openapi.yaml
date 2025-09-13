@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: AI Calendar API
+  version: 1.0.0
+  description: >
+    REST API for Calendars, Events, and Attendees.
+    Supports time zones, recurring rules, and invitations.
+
+servers:
+  - url: http://localhost:5000
+    description: Local development
+
+paths:
+  /calendars:
+    get:
+      summary: List calendars
+      responses:
+        '200':
+          description: A list of calendars
+    post:
+      summary: Create a calendar
+      responses:
+        '201':
+          description: Calendar created
+
+  /events:
+    get:
+      summary: List events
+      parameters:
+        - in: query
+          name: start
+          schema:
+            type: string
+            format: date-time
+          required: false
+        - in: query
+          name: end
+          schema:
+            type: string
+            format: date-time
+          required: false
+        - in: query
+          name: timezone
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: A list of events
+    post:
+      summary: Create an event
+      responses:
+        '201':
+          description: Event created
+
+  /attendees:
+    get:
+      summary: List attendees
+      responses:
+        '200':
+          description: A list of attendees
+    post:
+      summary: Add attendee
+      responses:
+        '201':
+          description: Attendee added
+
+components:
+  schemas:
+    Calendar:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+        recurrenceRule:
+          type: string
+        clientReferenceId:
+          type: string
+    Attendee:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
