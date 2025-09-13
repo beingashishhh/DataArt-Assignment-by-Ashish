@@ -232,7 +232,9 @@ curl -X POST http://localhost:5000/api/Events \
    - **Customizable** → Can fine-tune prompts or model for calendar use-cases.  
 
 
-
+#My project. mcp server created 
+post/mcp working
+NLP integration tomorrow
 
 
 
