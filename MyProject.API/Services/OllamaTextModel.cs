@@ -85,7 +85,7 @@ Now convert this request:
                 }
                 catch
                 {
-                    // Ignore malformed fragments
+                    
                 }
             }
 
@@ -104,7 +104,7 @@ Now convert this request:
                     using var doc = JsonDocument.Parse(fullResponse);
                     var root = doc.RootElement;
 
-                    // Validate fields
+                   
                     string title = root.TryGetProperty("title", out var titleProp)
                         ? titleProp.GetString() ?? "Meeting"
                         : "Meeting";
@@ -132,7 +132,7 @@ Now convert this request:
                     DateTime start, end;
 
                     if (!DateTime.TryParse(startStr, out start))
-                        start = DateTime.Today.AddHours(15); // default 3pm today
+                        start = DateTime.Today.AddHours(15); 
 
                     if (!DateTime.TryParse(endStr, out end))
                         end = start.AddMinutes(durationMinutes);

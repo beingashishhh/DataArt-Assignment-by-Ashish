@@ -4,7 +4,7 @@ using MyProject.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -17,11 +17,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Http clients
+
 builder.Services.AddHttpClient("MCP", c => c.BaseAddress = new Uri("http://localhost:5035"));
 builder.Services.AddHttpClient("Ollama", c => c.BaseAddress = new Uri("http://localhost:11434/"));
 
-// DI
+
 builder.Services.AddSingleton<ITextModel, OllamaTextModel>();
 
 var app = builder.Build();
