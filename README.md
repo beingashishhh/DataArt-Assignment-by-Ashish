@@ -336,6 +336,12 @@ This journey helped me grow my **.NET, API design, and AI integration skills**, 
 
 ---
 
+## Screenshot
+
+<img width="1912" height="1022" alt="Screenshot 2025-09-14 214606" src="https://github.com/user-attachments/assets/8ef8cebb-9846-4739-b161-8f012c0a4b8c" />
+<img width="1919" height="1024" alt="Screenshot 2025-09-14 220237" src="https://github.com/user-attachments/assets/2458c3d0-84c0-42bf-85d7-7ac61c82f2d3" />
+
+---
 ## Acknowledgements
 
 I would like to sincerely thank:  
