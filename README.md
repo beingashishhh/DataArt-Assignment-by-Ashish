@@ -221,6 +221,8 @@ Upgrade to .NET 9, add entities/relationships, and implement repositories with a
    `GET /api/Meetings/5`  
    → returns `404 Not Found`
 
+---
+
 **Research on Open-Source LLaMA AI Model**  
 
      How to Run LLaMA Locally  
@@ -318,6 +320,38 @@ dotnet run --project .\MyProject.API
     "prompt": "Meeting with Sarah tomorrow 3pm to 4pm"
   }
   ```
+
+---
+
+---
+
+## Conclusion
+
+With the help of these four homeworks, I progressively learned how to:  
+- Set up and structure a .NET project with a 3-layer architecture.  
+- Design, compare, and implement API styles and contracts.  
+- Upgrade projects to the latest .NET version while applying new C# features.  
+- Integrate AI with MCP and API orchestration to build a functional calendar system.  
+
+This journey helped me grow my **.NET, API design, and AI integration skills**, while also improving my ability to think about system architecture step by step.  
+
+---
+
+## Acknowledgements
+
+I would like to sincerely thank:  
+
+- **Suraj Ghosi**  
+- **Abhishek Bharti**  
+- **Almas Karimsakov**  
+- **Yenlik Tazabek**  
+- **Sheetal Kale**  
+- And the entire **DataArt team**  
+
+for their invaluable guidance, support, and for giving me this wonderful learning opportunity through the **.NET School by DataArt program**.  
+
+---
+
 
 
 
