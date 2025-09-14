@@ -1,33 +1,41 @@
-using Microsoft.EntityFrameworkCore;
-using MyProject.Data.Context;
+﻿using Microsoft.OpenApi.Models;
+using MyProject.API.Services;
+using MyProject.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "MyProject.API",
+        Version = "v1",
+        Description = "Minimal API for AI calendar (Ollama + MCP)"
+    });
+});
+
+
+builder.Services.AddHttpClient("MCP", c => c.BaseAddress = new Uri("http://localhost:5035"));
+builder.Services.AddHttpClient("Ollama", c => c.BaseAddress = new Uri("http://localhost:11434/"));
+
+
+builder.Services.AddSingleton<ITextModel, OllamaTextModel>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyProject.API v1");
+        c.RoutePrefix = "swagger";
+    });
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

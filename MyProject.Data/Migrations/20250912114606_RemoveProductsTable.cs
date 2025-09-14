@@ -1,14 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-
+#nullable disable
 
 namespace MyProject.Data.Migrations
 {
-   
-    public partial class InitialCreate : Migration
-    {
     
+    public partial class RemoveProductsTable : Migration
+    {
+        
         protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Products");
+        }
+
+       
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Products",
@@ -23,13 +30,6 @@ namespace MyProject.Data.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                 });
-        }
-
-      
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Products");
         }
     }
 }

@@ -9,6 +9,19 @@ namespace MyProject.Data.Context
         {
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Attendee> Attendees { get; set; }
+        public DbSet<Meeting> Meetings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Meeting>()
+                .HasMany(m => m.Attendees)
+                .WithMany(a => a.Meetings)
+                .UsingEntity(j => j.ToTable("MeetingAttendees"));
+        }
     }
 }
