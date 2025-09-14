@@ -1,7 +1,6 @@
-# DataArt Assignment by Ashish
+# DataArt Assignment by Ashish (AI Calendar)
 
-This .NET project was created as part of the **.NET School by DataArt program**.  
-It represents my learning journey, where I practice building projects, improving coding skills, and applying concepts learned during the course.
+An AI-driven calendar system that lets users schedule, update, and cancel events using natural language, powered by a local LLM and orchestrated through an MCP server.
 
 ---
 
