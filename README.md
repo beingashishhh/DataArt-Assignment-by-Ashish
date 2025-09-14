@@ -7,6 +7,9 @@ It represents my learning journey, where I practice building projects, improving
 
 ## 📌 Homework 1: Project Setup & First API
 
+Objective
+Set up a .NET 3-layer architecture and build a basic CRUD API with EF Core and Swagger
+
 ### What was done
 - Set up a **3-layer architecture**:
   - `MyProject.API` → Controllers, Swagger UI
@@ -32,6 +35,9 @@ It represents my learning journey, where I practice building projects, improving
 ---
 
 ## 📌 Homework 2: API Style, Contracts & Controllers
+
+Objective
+Compare API styles, define contracts, and implement secured REST controllers with JWT
 
 ###  Step 1: Compare API Styles
 We evaluated **gRPC, GraphQL, and REST** for the AICalendar system.  
@@ -75,42 +81,50 @@ curl -X POST http://localhost:5000/api/Events \
     -H "Content-Type: application/json" \
     -d '{"title":"Team Meeting","description":"Discuss project","start":"2025-09-12T10:00:00Z","end":"2025-09-12T11:00:00Z","timezone":"UTC","calendarId":1}'
 ```
-###  Versioning & Deprecation
-- Current version: **v1** (all endpoints under `/api/`)
-- Breaking changes will be released as `/api/v2/`
-- Deprecated endpoints will remain active for one release cycle with warnings
+### Versioning & Deprecation
+- The current API version is **v1** (everything starts with `/api/`).
+- When big changes happen, a new version will be created → `/api/v2/`.
+- Old (deprecated) versions will still work for one update, but you’ll see warnings.
 
+### Migration Notes for Clients
+- If you’re still using the old Homework 1 API, move to the new REST API endpoints.
+- Every request now needs a **JWT token** in the header:  
+  `Authorization: Bearer <your_token>`
 
-###  Migration Notes for Clients
-- Clients using Homework 1 endpoints should migrate to REST controllers
-- All requests must now include a valid **JWT token** in the `Authorization: Bearer <token>` header
-
-
-###  Local Development Setup
-1. Clone this repository  
-2. Run `dotnet restore`  
-3. Run `dotnet build`  
-4. Start the API with:  
+### Local Development Setup
+1. Clone (download) this project.  
+2. Run:
+   ```bash
+   dotnet restore
+   ```
+   → installs all required packages.  
+3. Build the project:
+   ```bash
+   dotnet build
+   ```
+4. Start the API:
    ```bash
    dotnet run --project MyProject.API
-5. Open Swagger UI at → [https://localhost:7127/swagger](https://localhost:7127/swagger)
+   ```
+5. Open Swagger in your browser: [https://localhost:7127/swagger](https://localhost:7127/swagger)  
+   → Swagger is an interface to test the API.
 
+### Security, Performance & Observability
+- **Security**: Only users with a valid JWT token can access protected parts of the API.  
+- **Performance**: Endpoints are optimized to quickly handle basic Create/Read/Update/Delete (CRUD) actions.  
+- **Observability**: Logging is enabled so you can track what’s happening inside the app.
 
-###  Security,  Performance &  Observability
-- **Security**: JWT authentication enforced for all protected endpoints  
-- **Performance**: REST endpoints optimized for CRUD, lightweight payloads  
-- **Observability**: Structured logging enabled with ASP.NET Core logging  
-
-
-###  Known Limitations
-- No rate limiting yet (clients can send unlimited requests)  
-- Pagination missing for list endpoints (large datasets may be slow to load)  
-- Error handling is basic (we only return simple error codes for now)  
-- Contract file (`openapi.yaml`) not yet finalized — endpoints are documented here in README  
+### Known Limitations
+- No request limits yet (clients can send unlimited requests).  
+- No pagination → long lists might load slowly.  
+- Error handling is very basic (only simple error codes).  
 
 ---
 
-## 📌 Homework 3 – Completion Summary
+## 📌 Homework 3
+
+Objective
+Upgrade to .NET 9, add entities/relationships, and implement repositories with authentication
 
 ###  Coding Tasks Completed
 - **Upgrade to .NET 9**
@@ -272,9 +286,38 @@ To extend the Calendar project with an **AI-driven orchestration layer**, enabli
 
 Open **3 terminals** in the project root:
 
+**Run Ollama (phi3)**
+```bash
+ollama run phi3
+```
+
 **Run MCP**
 ```bash
 dotnet run --project .\MyProject.MCPServer
+```
+
+**Run API**  
+```bash
+dotnet run --project .\MyProject.API
+```
+
+### Testing
+
+- Open the Swagger UI in your browser:  
+  [http://localhost:5173/swagger](http://localhost:5173/swagger)  
+
+- Swagger allows you to try out the API without writing code.  
+  - You can **add events**  
+  - You can **update events**  
+  - You can **cancel events**  
+  - You can **view scheduled events**  
+
+- Example → Add an event:  
+  ```json
+  {
+    "prompt": "Meeting with Sarah tomorrow 3pm to 4pm"
+  }
+  ```
 
 
 
