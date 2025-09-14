@@ -209,7 +209,7 @@ curl -X POST http://localhost:5000/api/Events \
 
 **Research on Open-Source LLaMA AI Model**  
 
-     **How to Run LLaMA Locally**  
+     How to Run LLaMA Locally  
    - Use **Ollama** or **llama.cpp** to run Meta’s LLaMA model on your local machine.  
    - Example with Ollama:  
      ```bash
@@ -231,10 +231,50 @@ curl -X POST http://localhost:5000/api/Events \
    - **Cost-efficient** → No API usage fees.  
    - **Customizable** → Can fine-tune prompts or model for calendar use-cases.  
 
+---
 
-#My project. mcp server created 
-post/mcp working
-NLP integration tomorrow
+## 📌 Homework 4 – AI Calendar Integration
+
+Objective
+To extend the Calendar project with an **AI-driven orchestration layer**, enabling natural language event scheduling using **Ollama (phi3)** as the local LLM.
+
+
+###   What was Done
+1. **MCP Server (`MyProject.MCPServer`)**
+   - Runs at `http://localhost:5035`
+   - Provides endpoints:
+     - `POST /save_event` → save event
+     - `POST /update_event` → update event
+     - `POST /cancel_event` → cancel event
+     - `GET /get_events` → retrieve events
+   - Currently stores events in memory (no database yet).
+
+2. **API Layer (`MyProject.API`)**
+   - Runs at `http://localhost:5173`
+   - Acts as a **bridge between frontend and MCP**
+   - `OrchestrationController` endpoints:
+     - `POST /api/orchestration/process` → takes a natural language prompt, calls Ollama → generates structured JSON → MCP `/save_event`
+     - `GET /api/orchestration/events` → fetches all events
+     - `POST /api/orchestration/update` → forwards update request to MCP
+     - `POST /api/orchestration/cancel` → forwards cancel request to MCP
+   - Integrated `ITextModel` for Ollama (phi3) interaction.
+
+3. **Domain Layer (`MyProject.Domain`)**
+   - Defines contracts and interfaces (e.g., `ITextModel`)
+   - Decouples AI logic from controllers
+
+4. **Data Layer (`MyProject.Data`)**
+   - Placeholder for future persistence (e.g., SQLite, EF Core)
+   - Currently unused
+
+
+###   How to Run
+
+Open **3 terminals** in the project root:
+
+**Run MCP**
+```bash
+dotnet run --project .\MyProject.MCPServer
 
 
 
