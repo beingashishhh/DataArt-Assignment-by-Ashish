@@ -33,14 +33,14 @@ namespace MyProject.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Calendar calendar) // ✅ Added [FromBody]
+        public async Task<IActionResult> Create([FromBody] Calendar calendar) 
         {
             await _calendarRepository.AddAsync(calendar);
             return CreatedAtAction(nameof(GetById), new { id = calendar.Id }, calendar);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Calendar calendar) // ✅ Added [FromBody]
+        public async Task<IActionResult> Update(int id, [FromBody] Calendar calendar) 
         {
             if (id != calendar.Id) return BadRequest();
 
@@ -63,6 +63,6 @@ namespace MyProject.API.Controllers
             if (!deleted) return NotFound();
 
             return NoContent();
-        } // ✅ Properly closed
+        } 
     }
 }

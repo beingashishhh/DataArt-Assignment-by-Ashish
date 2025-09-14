@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "contracts", "contracts", "{
 		openapi.yaml = openapi.yaml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProject.MCPServer", "MyProject.MCPServer\MyProject.MCPServer.csproj", "{DB652AA9-00DF-4F8A-872B-05D1939221F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{53BBECFF-A8C0-41AB-8AEB-4E0B980A447A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BBECFF-A8C0-41AB-8AEB-4E0B980A447A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BBECFF-A8C0-41AB-8AEB-4E0B980A447A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB652AA9-00DF-4F8A-872B-05D1939221F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB652AA9-00DF-4F8A-872B-05D1939221F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB652AA9-00DF-4F8A-872B-05D1939221F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB652AA9-00DF-4F8A-872B-05D1939221F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

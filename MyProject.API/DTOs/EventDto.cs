@@ -16,7 +16,7 @@ namespace MyProject.API.DTOs
 
         public int CalendarId { get; set; }
 
-        // List of attendees in this event
+     
         public List<AttendeeDto> Attendees { get; set; } = new();
     }
 }

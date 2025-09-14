@@ -23,11 +23,11 @@ namespace MyProject.API.Controllers
             if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
                 return BadRequest("Username and password are required.");
 
-            // 🔑 Demo credentials (change later to DB check)
+         
             if (request.Username == "admin" && request.Password == "password")
             {
                 var token = GenerateJwtToken(request.Username);
-                return Ok(new { token }); // lowercase property = easier for Swagger/Postman
+                return Ok(new { token }); 
             }
 
             return Unauthorized();

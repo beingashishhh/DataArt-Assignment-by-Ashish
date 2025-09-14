@@ -4,10 +4,10 @@
 
 namespace MyProject.Data.Migrations
 {
-    /// <inheritdoc />
+    
     public partial class FixMeetingAttendees : Migration
     {
-        /// <inheritdoc />
+       
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
@@ -60,7 +60,7 @@ namespace MyProject.Data.Migrations
                 column: "MeetingsId");
         }
 
-        /// <inheritdoc />
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

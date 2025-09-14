@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyProject.Data.Migrations
 {
-    /// <inheritdoc />
+    
     public partial class AddEventsTable : Migration
     {
-        /// <inheritdoc />
+        
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -56,7 +56,7 @@ namespace MyProject.Data.Migrations
                 principalColumn: "Id");
         }
 
-        /// <inheritdoc />
+      
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(

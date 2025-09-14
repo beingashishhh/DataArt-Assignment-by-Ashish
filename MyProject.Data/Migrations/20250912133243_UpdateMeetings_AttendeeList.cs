@@ -4,10 +4,10 @@
 
 namespace MyProject.Data.Migrations
 {
-    /// <inheritdoc />
+   
     public partial class UpdateMeetings_AttendeeList : Migration
     {
-        /// <inheritdoc />
+       
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
@@ -16,7 +16,7 @@ namespace MyProject.Data.Migrations
                 newName: "AttendeeIds");
         }
 
-        /// <inheritdoc />
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
